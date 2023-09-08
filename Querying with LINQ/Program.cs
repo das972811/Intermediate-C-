@@ -30,9 +30,12 @@ public class Program
 
     }
 
-    public static void ConversionOperators()
+
+
+    public static void ConversionOperators(IEnumerable<Bird> birds)
     {
-        
+        var redBirdList = birds.Where(b => b.Color == "Red").ToList();
+        var redBirdArray = birds.Where(b => b.Color == "Red").ToArray();
     }
 
     public static void GenerationOperators()
