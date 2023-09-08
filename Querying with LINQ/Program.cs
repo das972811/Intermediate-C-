@@ -28,7 +28,43 @@ public class Program
             new() { Name =  "Canary", Color = "Yellow", Sightings = 0 }
         };
 
+    }
+
+    public static void ConversionOperators()
+    {
+        
+    }
+
+    public static void GenerationOperators()
+    {
         var colors = new List<string>() { "Red", "Blue", "Purple" };
+        var newColors = new List<string>() { "Pink", "Blue", "Teal" };
+
+        var numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        var generateNumber = Enumerable.Range(0, 10);
+        var blankBirds = Enumerable.Repeat(new Bird(), 5);
+
+        var emptyBirds = Enumerable.Empty<Bird>();
+
+        var emptyNumbers = Enumerable.Empty<int>();
+        emptyNumbers.DefaultIfEmpty();
+    }
+
+    public static void SetOperators(IEnumerable<Bird> birds, IEnumerable<string> colors)
+    {
+        colors.Except(birds.Select(b => b.Color).Distinct());
+        birds.Select(b => b.Color).Distinct();
+    }
+
+    public static void Aggregates(IEnumerable<Bird> birds)
+    {
+        var queryBirds = birds.GroupBy( b => b.Color );
+        birds.GroupBy(b => b.Color).Select(g => new { Color = g.Key, Count = g.Count() });
+
+        birds.Sum(b => b.Sightings);
+        birds.GroupBy(b =>  b.Color).Select(g => new { Color = g.Key, Sightings = g.Sum( b => b.Sightings ) });
+        birds.Average(b => b.Sightings);
+        birds.Min(b => b.Sightings);
     }
 
     public static void MethodJoinLinq(IEnumerable<Bird> birds, IEnumerable<string> colors)
