@@ -1,4 +1,4 @@
-namespace LearningLINQ;
+namespace BirdLinq;
 
 public class Bird
 {
