@@ -28,6 +28,41 @@ public class Program
             new() { Name =  "Canary", Color = "Yellow", Sightings = 0 }
         };
 
+        var colors = new List<string>() { "Red", "Blue", "Purple" };
+    }
+
+    public static void MethodJoinLinq(IEnumerable<Bird> birds, IEnumerable<string> colors)
+    {
+
+        var favoriteBirds = from b in birds join c in colors on b.Color equals c select b;
+
+        favoriteBirds = birds.Join(
+            colors,
+            b => b.Color,
+            c => c,
+            (bird, color) => bird
+        );
+
+        var anonymousFavoriteBirds = birds.Join
+        (
+            colors,
+            b => b.Color,
+            c => c,
+            (bird, color) => new { Color = color, Bird = bird }
+        );
+
+        var groupedBirds = colors.GroupJoin(
+            birds,
+            c => c,
+            b => b.Color,
+            (color, bird) => new { Color = color, Birds = bird }
+        );
+
+        var groupedBirdsTest = groupedBirds.Select( g => g.Color );
+        var groupedBirdsTeste = groupedBirds.SelectMany( g => g.Birds );
+
+
+
         // var test = birds.Any( b => b.Name == "Corw" );
         // var sparrow = new Bird { Name = "Sparrow", Color = "Brown" };
         // Console.WriteLine(birds.Contains(sparrow));
@@ -35,11 +70,16 @@ public class Program
         var queryBirds = birds.Where( b => b.Name == "Canary" ).Single();
         queryBirds = birds.SingleOrDefault(b => b.Name == "Canadry" );
 
+        birds.OrderBy( b => b.Name.Length).Skip(3).Take(3);
+        birds.OrderBy( b => b.Name.Length ).TakeWhile( b => b.Name.Length < 6 );
+
+
+
         Console.WriteLine(queryBirds);
 
     }
 
-    public void MethdLinq(List<Bird> birds)
+    public static void MethdLinq(List<Bird> birds)
     {
         IEnumerable<Bird> queryBirds = birds.Where( b => b.Color == "Red" );
         IEnumerable<Bird> orderedBirds = birds.OrderBy( b => b.Color );
