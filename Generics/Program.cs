@@ -12,7 +12,12 @@ public class Program
         // var ec = new EnumerableCompositor<int>(new IEnumerable<int>[] { list1, list2, set1, array1 });
         var ec = new EnumerableCompositor<int> { list1, list2, set1, array1 };
 
+        IEnumerable<int> firstThree = Utils.Take(list1, 3);
 
+        foreach (var item in firstThree)
+        {
+
+        }
     }
 
 

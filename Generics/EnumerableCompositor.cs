@@ -23,7 +23,13 @@ public class EnumerableCompositor<T> : IEnumerable<T>
 
     IEnumerator<T> IEnumerable<T>.GetEnumerator()
     {
-        throw new NotImplementedException();
+        foreach (var collection in _collections)
+        {
+            foreach(var item in collection)
+            {
+                yield return item;
+            }
+        }
     }
 
     IEnumerator IEnumerable.GetEnumerator()
