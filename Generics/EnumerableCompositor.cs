@@ -2,6 +2,14 @@ using System.Collections;
 
 namespace GenericsDemo;
 
+public static class EnumerableCompositor
+{
+    public static EnumerableCompositor<T> Create<T>(params IEnumerable<T>[] collections)
+    {
+        return new EnumerableCompositor<T>(collections);
+    }
+}
+
 public class EnumerableCompositor<T> : IEnumerable<T>
 {
     private List<IEnumerable<T>> _collections = null!;
