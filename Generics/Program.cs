@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using GenericsDemo;
-using static GenericsDemo.EnumerableCompositor;
+﻿using static GenericsDemo.EnumerableCompositor;
 
 public class Program
 {
@@ -13,6 +11,10 @@ public class Program
 
         int numOdd = Create(list1, list2, set1, array1).Count(x => IsOdd(x));
         Console.WriteLine(numOdd);
+
+        HashSet<int> set = Create(list1, list2, set1, array1).To<HashSet<int>>();
+
+        Console.WriteLine(set);
 
         // var ec = new EnumerableCompositor<int>(new IEnumerable<int>[] { list1, list2, set1, array1 });
         // var ec = new EnumerableCompositor<int> { list1, list2, set1, array1 };

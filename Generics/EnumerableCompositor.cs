@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Data;
 
 namespace GenericsDemo;
 
@@ -43,5 +44,17 @@ public class EnumerableCompositor<T> : IEnumerable<T>
     IEnumerator IEnumerable.GetEnumerator()
     {
         throw new NotImplementedException();
+    }
+
+    public TCollection To<TCollection>() where TCollection : ICollection<T>, new()
+    {
+        var collection = new TCollection();
+
+        foreach(var item in this)
+        {
+            collection.Add(item);
+        }
+
+        return collection;
     }
 }
