@@ -7,8 +7,7 @@ public class PointTests
     [Fact]
     public void PointTest()
     {
-        int x = 5;
-        int y = 6;
+        int x = 5, y = 6;
 
         Point point = new(x, y);
 
