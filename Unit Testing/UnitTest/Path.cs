@@ -9,8 +9,10 @@ public class Path
         _pathLocations = pathLocations;
     }
 
-    public bool IsOnPath(MapLocation mapLocation)
-    {
-        return Array.IndexOf(_pathLocations, mapLocation) >= 0;
-    }
+//     public bool IsOnPath(MapLocation mapLocation)
+//     {
+//         return Array.IndexOf(_pathLocations, mapLocation) >= 0;
+//     }
+
+    public bool IsOnPath(MapLocation mapLocation) => _pathLocations.Contains(mapLocation);
 }
